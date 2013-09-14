@@ -1,0 +1,16 @@
+<h1>Group App</h1>
+<p>This is the homepage for Group App</p>
+
+<% if signed_in? %>
+  Welcome <%= current_user.name %>!
+  <%= link_to "Sign Out", signout_path %>
+  <%= render 'shared/room_form' %>
+  Rooms:
+  <% current_user.room_connections.each do |rc| %>
+  	<p><%= link_to (Room.find_by_id(rc.room_id)).title, room_path(rc.room_id) %></p>
+  <% end %>
+  Rooms: <%= current_user.rooms.size %>
+  Room Connections: <%= current_user.room_connections.size %>
+<% else %>
+  <%= link_to "Sign in with Facebook", "/auth/facebook" %>
+<% end %>

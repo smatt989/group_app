@@ -1,0 +1,7 @@
+<%= form_for RoomConnection.new do |rc| %>
+  <%= render 'shared/error_messages', object: rc.object %>
+  <div class="field">
+    <%= rc.hidden_field :room_id, :value => @room.id %>
+  </div>
+  <%= rc.submit "Join Room", class: "btn btn-large btn-primary" %>
+<% end %>

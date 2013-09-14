@@ -1,0 +1,12 @@
+<h1>Welcome to <%= @room.title %></h1>
+
+<%= render 'rooms/controls' %>
+
+<% if @rc %>
+	<%= render 'shared/post_form' %>
+
+	Posts:
+	<% @room.posts.order('created_at DESC').each do |p| %>
+	<p><a href="<%= p.source %>"><%=p.source%></a> (posted by: <%= User.find_by_id(p.user_id).name %>)</p>
+	<% end %>
+<% end %>

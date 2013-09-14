@@ -1,0 +1,10 @@
+<h1>Create a new room </h1>
+
+
+<%= form_for Room.new do |r| %>
+  <%= render 'shared/error_messages', object: r.object %>
+  <div class="field">
+    <%= r.text_field :title, placeholder: "Room name..." %>
+  </div>
+  <%= r.submit "Create", class: "btn btn-large btn-primary" %>
+<% end %>
