@@ -6,7 +6,8 @@ class SessionsController < ApplicationController
   	@user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
   	#session[:user_id] = @user.uid
     sign_in @user
-    render json: @user.as_json(:only => [:name])
+    #render json: @user.as_json(:only => [:name])
+    redirect_to root_url
   end
 
   def destroy
