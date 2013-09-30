@@ -1,0 +1,17 @@
+<div data-role="page" id="new_room">
+	<%= javascript_include_tag "createroom" %>
+	<div data-role="header">
+		<a href="#" data-rel="back" data-iconpos="left" data-icon="delete" data-role="button" data-mini="true" data-inline="true">Cancel</a>
+		<h1> Create Room </h1>
+	</div>
+	<div data-role="content">
+		<div data-role="fieldcontain">
+		    <label for="textinput-fc">Room title:</label>
+		    <input id="new_room_title" type="text" name="textinput-fc" id="textinput-fc" placeholder="Choose wisely..." value="">
+		    <br />
+		    <a class="create_room_button" href="#" data-role="button" data-inline="true">Create</a>
+		    <br />
+		    <a class="create_room_button" href="#" data-role="button" data-inline="true">Create + Invite</a>
+		</div>
+	</div>
+</div>

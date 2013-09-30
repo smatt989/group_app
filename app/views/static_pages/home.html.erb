@@ -1,16 +1,26 @@
-<h1>Group App</h1>
-<p>This is the homepage for Group App</p>
-
 <% if signed_in? %>
-  Welcome <%= current_user.name %>!
-  <%= link_to "Sign Out", signout_path %>
-  <%= render 'shared/room_form' %>
-  Rooms:
-  <% current_user.room_connections.each do |rc| %>
-  	<p><%= link_to (Room.find_by_id(rc.room_id)).title, room_path(rc.room_id) %></p>
-  <% end %>
-  Rooms: <%= current_user.rooms.size %>
-  Room Connections: <%= current_user.room_connections.size %>
+
+    <div data-role="page" id="home">
+      <div data-role="header">
+          <a href=<%=signout_path%> data-role="button" data-icon="cancel">Sign out</a>
+          <h1>Welcome to Room</h1>
+      </div>
+      <div data-role="content">
+          <ul data-role="listview">
+            <% current_user.room_connections.each do |rc| %>
+              <% r = Room.find_by_id(rc.room_id) %>
+              <li><a href=<%=room_path(rc.room_id)%>>
+                  <h2><%= r.title %></h2>
+                  <p><%= r.room_connections.size %> Contributors</p>
+                  <p><%= r.posts.size %> Exhibits</p>
+              </a></li>
+            <% end %>
+          </ul>
+      </div>
+      <div data-role="footer" data-position="fixed">
+        <a data-inline="false" href="/rooms/new" data-role="button" data-theme="b" data-icon="plus">New Room</a>
+      </div>
+    </div>
 <% else %>
   <%= link_to "Sign in with Facebook", "/auth/facebook" %>
 <% end %>

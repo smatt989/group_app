@@ -3,10 +3,27 @@
 <%= render 'rooms/controls' %>
 
 <% if @rc %>
-	<%= render 'shared/post_form' %>
 
-	Posts:
-	<% @room.posts.order('created_at DESC').each do |p| %>
-	<p><a href="<%= p.source %>"><%=p.source%></a> (posted by: <%= User.find_by_id(p.user_id).name %>)</p>
-	<% end %>
+	<div data-role="page" id="room">
+		<div data-role-"header">
+		    <div data-role="navbar" class="nav-glyphish-example" data-grid="c">
+			    <ul>
+			        <li><a href="/" data-icon="home">Home</a></li>
+			        <li><a href="#" data-icon="grid">Photo</a></li>
+			        <li><a href="#post_form" data-position-to="window" data-transition="pop" data-rel="popup" data-icon="edit">Link</a></li>
+			        <li><a href="#invite_friends" id="invitations" data-transition="slide" data-icon="bars">Contributors</a></li>
+			    </ul>
+			</div>
+		</div>
+		<div data-role="content">
+			<% @room.posts.order('created_at DESC').each do |p| %>
+				<p><a href="<%= p.source %>"><%=p.source%></a> (posted by: <%= User.find_by_id(p.user_id).name %>)</p>
+			<% end %>
+		</div>
+		<div data-role="popup" id="post_form">
+			<%= render 'shared/post_form' %>
+		</div>
+	</div>
+
+
 <% end %>
